@@ -25,14 +25,19 @@
     }
 
     .logo {
-      position: absolute;
-      left: 20px;
-      top: 50%;
-      transform: translateY(-50%);
-      height: auto;
-      height: 40px;
-      width: auto;
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 40px; /* PC'de logo yüksekliği */
+    width: auto;
     }
+
+    @media (max-width: 768px) {
+    .logo {
+    height: 15px; /* Mobilde logo yüksekliği küçültülüyor */
+    }
+    } 
 
     header h1 {
       margin: 0;
