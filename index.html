@@ -4,15 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="icon" href="images/plogo1.jpg" type="image/jpeg">
-  <title>Punchcim</<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-58E46LG3E2"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <title>Punchcim</title>
 
-  gtag('config', 'G-58E46LG3E2');
-</script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-58E46LG3E2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-58E46LG3E2');
+  </script>
+
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -33,18 +36,18 @@
     }
 
     .logo {
-    position: absolute;
-    left: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    height: 40px; /* PC'de logo yüksekliği */
-    width: auto;
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      height: 40px; /* PC'de logo yüksekliği */
+      width: auto;
     }
 
     @media (max-width: 768px) {
-    .logo {
-    height: 15px; /* Mobilde logo yüksekliği küçültülüyor */
-    }
+      .logo {
+        height: 15px; /* Mobilde logo yüksekliği küçültülüyor */
+      }
     } 
 
     header h1 {
@@ -162,13 +165,11 @@
     <p><strong>Konum:</strong> İstanbul, Türkiye</p>
   </footer>
 
-  <!-- (let i = 8; i <= 69; i++)YENI BIR FOTO EKLEMEK ICIN SU KISMI DEGISTIR</p> -->
   <script>
     const container = document.getElementById("gallery");
     const modal = document.getElementById("image-modal");
     const modalImg = document.getElementById("modal-img");
 
-     
     for (let i = 8; i <= 69; i++) { 
       const num = i.toString().padStart(4, '0');
       const filename = `IMG-20250414-WA${num}.jpg`;
