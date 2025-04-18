@@ -51,24 +51,17 @@
       .theme-toggle {
         position: absolute;
         right: -5px;
-        /* Sağdan 15px boşluk */
         top: 15px;
-        /* Üstten 15px boşluk */
         transform: none;
-        /* Ortalamayı kaldır */
       }
 
       .logo {
         position: absolute;
         left: 10px;
-        /* Sol kaydırma */
-        /* veya sağa kaydırmak için right: 10px; kullanabilirsiniz */
         top: 50%;
         transform: translateY(-50%);
         height: 18px;
-        /* Logonun yüksekliğini küçültme */
         width: auto;
-        /* Yükseklik orantısına göre genişliği ayarlama */
       }
     }
 
@@ -138,10 +131,6 @@
       max-height: 90%;
       border-radius: 10px;
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
-    }
-
-    .modal:target {
-      display: flex;
     }
 
     footer {
@@ -248,20 +237,6 @@
       }
     }
 
-    @media (max-width: 600px) {
-      #popup-content {
-        max-width: 90%;
-      }
-
-      #popup h2 {
-        font-size: 1.2rem;
-      }
-
-      #popup p {
-        font-size: 0.85rem;
-      }
-    }
-
     body.dark-mode {
       background-color: #121212;
     }
@@ -276,7 +251,6 @@
 
     body.dark-mode .card-body h3 {
       color: white;
-      /* Beyaz renk */
     }
   </style>
 </head>
@@ -298,8 +272,7 @@
   <footer>
     <h2>İletişim</h2>
     <p><strong>Mail:</strong> punchcim@gmail.com</p>
-    <p><strong>Instagram:</strong> <a href="https://instagram.com/punchcim" style="color:#1abc9c;"
-        target="_blank">@punchcim</a></p>
+    <p><strong>Instagram:</strong> <a href="https://instagram.com/punchcim" style="color:#1abc9c;" target="_blank">@punchcim</a></p>
     <p><strong>Konum:</strong> İstanbul, Türkiye</p>
   </footer>
 
@@ -308,11 +281,8 @@
     <div id="popup-content">
       <button class="close" onclick="closePopup()">&times;</button>
       <h2>Tamamen Size Özel Tasarımlar 🎨✨</h2>
-      <p>İster kişisel zevkinize göre, ister sevdiklerinize unutulmaz bir hediye olarak 🏱, tamamen özel ve
-        kişiselleştirilmiş punch tasarımları hazırlıyoruz! 💥 Her bir tasarım, sizin ve sevdiklerinizin tarzına uygun
-        olarak özel olarak şekillendirilebilir. 💫</p>
-      <p>Hayalinizdeki benzersiz tasarımı yaratmak için bizimle iletişime geçin ve yaratıcılığınızı konuşturun! 😍👩‍🎨
-      </p>
+      <p>İster kişisel zevkinize göre, ister sevdiklerinize unutulmaz bir hediye olarak 🏱, tamamen özel ve kişiselleştirilmiş punch tasarımları hazırlıyoruz! 💥 Her bir tasarım, sizin ve sevdiklerinizin tarzına uygun olarak özel olarak şekillendirilebilir. 💫</p>
+      <p>Hayalinizdeki benzersiz tasarımı yaratmak için bizimle iletişime geçin ve yaratıcılığınızı konuşturun! 😍👩‍🎨</p>
       <button class="okay" onclick="closePopup()">Harika!</button>
     </div>
   </div>
@@ -328,8 +298,8 @@
       script.onload = () => {
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
-        window.gtag = gtag; // BU ŞART
-        window.gtagReady = true; // BU SATIRI DA EKLE
+        window.gtag = gtag;
+        window.gtagReady = true;
 
         gtag('js', new Date());
         gtag('config', 'G-58E46LG3E2');
@@ -341,59 +311,46 @@
     const modalImg = document.getElementById("modal-img");
     const themeToggle = document.getElementById("toggle-theme");
 
-    for (let i = 0; i <= 73; i++) { /* 0'dan 73'e kadar fotoğraflar eklenecek */
-      const num = i.toString().padStart(4, '0'); // Sayıyı 4 haneli yapmak için sıfır ekler
-      const filename = `IMG-20250414-WA${num}.jpg`; // Dosya ismini oluştur
+    for (let i = 0; i <= 73; i++) {
+      const num = i.toString().padStart(4, '0');
+      const filename = `IMG-20250414-WA${num}.jpg`;
 
       const card = document.createElement('div');
       card.classList.add('card');
 
       const img = document.createElement('img');
-      img.src = `images/${filename}`;  // Fotoğrafı yükle
-      img.alt = `Ürün ${i + 1}`;  // Ürün numarasını 1'den başlatmak için
+      img.src = `images/${filename}`;
+      img.alt = `Ürün ${i + 1}`;
 
-      // Fotoğrafı tıklayınca modal açılması için event listener ekleyin
       img.addEventListener('click', () => {
         modal.style.display = 'flex';
         modalImg.src = img.src;
-
-        if (window.gtagReady) {
-          gtag('event', 'image_click', {
-            'event_category': 'Product',
-            'event_label': `Ürün ${i + 1}`,
-          });
-        } else {
-          console.warn('gtag is not ready yet.');
-        }
+        gtag('event', 'open_image', { 'image_name': filename });
       });
 
-      const body = document.createElement('div');
-      body.classList.add('card-body');
+      const cardBody = document.createElement('div');
+      cardBody.classList.add('card-body');
       const title = document.createElement('h3');
-      title.textContent = `Ürün ${i + 1}`; // Ürün numarasını 1'den başlatmak için
+      title.innerText = `Ürün ${i + 1}`;
+      cardBody.appendChild(title);
 
-      body.appendChild(title);
       card.appendChild(img);
-      card.appendChild(body);
+      card.appendChild(cardBody);
       container.appendChild(card);
     }
-  </script>
 
+    // Tema değiştirme işlevselliği
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      themeToggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+    });
 
-  window.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') {
-  modal.style.display = 'none';
-  }
-  });
-
-  function closePopup() {
-  document.getElementById('popup').style.display = 'none';
-  }
-
-  themeToggle.addEventListener('click', () => {
-  document.body.classList.toggle('dark-mode');
-  themeToggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
-  });
+    // Pop-up kapanma fonksiyonu
+    function closePopup() {
+      const popup = document.getElementById("popup");
+      popup.style.display = "none";
+      gtag('event', 'close_popup');
+    }
   </script>
 
 </body>
