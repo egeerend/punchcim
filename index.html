@@ -272,7 +272,8 @@
   <footer>
     <h2>İletişim</h2>
     <p><strong>Mail:</strong> punchcim@gmail.com</p>
-    <p><strong>Instagram:</strong> <a href="https://instagram.com/punchcim" style="color:#1abc9c;" target="_blank">@punchcim</a></p>
+    <p><strong>Instagram:</strong> <a href="https://instagram.com/punchcim" style="color:#1abc9c;"
+        target="_blank">@punchcim</a></p>
     <p><strong>Konum:</strong> İstanbul, Türkiye</p>
   </footer>
 
@@ -281,8 +282,11 @@
     <div id="popup-content">
       <button class="close" onclick="closePopup()">&times;</button>
       <h2>Tamamen Size Özel Tasarımlar 🎨✨</h2>
-      <p>İster kişisel zevkinize göre, ister sevdiklerinize unutulmaz bir hediye olarak 🏱, tamamen özel ve kişiselleştirilmiş punch tasarımları hazırlıyoruz! 💥 Her bir tasarım, sizin ve sevdiklerinizin tarzına uygun olarak özel olarak şekillendirilebilir. 💫</p>
-      <p>Hayalinizdeki benzersiz tasarımı yaratmak için bizimle iletişime geçin ve yaratıcılığınızı konuşturun! 😍👩‍🎨</p>
+      <p>İster kişisel zevkinize göre, ister sevdiklerinize unutulmaz bir hediye olarak 🏱, tamamen özel ve
+        kişiselleştirilmiş punch tasarımları hazırlıyoruz! 💥 Her bir tasarım, sizin ve sevdiklerinizin tarzına uygun
+        olarak özel olarak şekillendirilebilir. 💫</p>
+      <p>Hayalinizdeki benzersiz tasarımı yaratmak için bizimle iletişime geçin ve yaratıcılığınızı konuşturun! 😍👩‍🎨
+      </p>
       <button class="okay" onclick="closePopup()">Harika!</button>
     </div>
   </div>
@@ -325,7 +329,15 @@
       img.addEventListener('click', () => {
         modal.style.display = 'flex';
         modalImg.src = img.src;
-        gtag('event', 'open_image', { 'image_name': filename });
+
+        if (window.gtagReady) {
+          gtag('event', 'image_click', {
+            'event_category': 'Product',
+            'event_label': `Ürün ${i + 1}`,
+          });
+        } else {
+          console.warn('gtag is not ready yet.');
+        }
       });
 
       const cardBody = document.createElement('div');
