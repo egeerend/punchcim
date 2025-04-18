@@ -322,12 +322,15 @@
         modal.style.display = 'flex';
         modalImg.src = img.src;
 
-        // Google Analytics: Fotoğraf tıklama
+      if (typeof gtag === "function") {
         gtag('event', 'image_click', {
           'event_category': 'Product',
           'event_label': `Ürün ${i + 1}`,
         });
-      });
+      } else {
+        console.warn('gtag is not ready yet.');
+      }
+    });
 
       const body = document.createElement('div');
       body.classList.add('card-body');
