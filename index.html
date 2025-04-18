@@ -288,39 +288,62 @@
     </div>
   </div>
 
-  <script>
+   <script>
+    // Google tag (gtag.js) kodu
+    (function() {
+      const script = document.createElement('script');
+      script.src = "https://www.googletagmanager.com/gtag/js?id=G-58E46LG3E2";
+      script.async = true;
+      document.head.appendChild(script);
+  
+      script.onload = () => {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-58E46LG3E2');
+      };
+    })();
+  
     const container = document.getElementById("gallery");
     const modal = document.getElementById("image-modal");
     const modalImg = document.getElementById("modal-img");
     const themeToggle = document.getElementById("toggle-theme");
-
+  
     for (let i = 0; i <= 73; i++) { /* 0'dan 73'e kadar fotoğraflar eklenecek */
       const num = i.toString().padStart(4, '0'); // Sayıyı 4 haneli yapmak için sıfır ekler
       const filename = `IMG-20250414-WA${num}.jpg`; // Dosya ismini oluştur
-
+  
       const card = document.createElement('div');
       card.classList.add('card');
-
+  
       const img = document.createElement('img');
       img.src = `images/${filename}`;  // Fotoğrafı yükle
       img.alt = `Ürün ${i + 1}`;  // Ürün numarasını 1'den başlatmak için
-
+  
       // Fotoğrafı tıklayınca modal açılması için event listener ekleyin
       img.addEventListener('click', () => {
-      modal.style.display = 'flex';
-      modalImg.src = img.src;
+        modal.style.display = 'flex';
+        modalImg.src = img.src;
+  
+        // Google Analytics: Fotoğraf tıklama olayı
+        gtag('event', 'image_click', {
+          'event_category': 'Product',
+          'event_label': `Ürün ${i + 1}`,
+        });
       });
-
+  
       const body = document.createElement('div');
       body.classList.add('card-body');
       const title = document.createElement('h3');
       title.textContent = `Ürün ${i + 1}`; // Ürün numarasını 1'den başlatmak için
-
+  
       body.appendChild(title);
       card.appendChild(img);
       card.appendChild(body);
       container.appendChild(card);
     }
+    </script>
+  
 
     window.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
