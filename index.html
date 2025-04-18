@@ -6,6 +6,7 @@
   <link rel="icon" href="images/plogo1.jpg" type="image/jpeg">
   <title>Punchcim</title>
   <style>
+    /* CSS KISMI BURASI */
     body {
       font-family: 'Segoe UI', sans-serif;
       margin: 0;
@@ -48,19 +49,18 @@
 
     @media (max-width: 768px) {
       .theme-toggle {
-      position: absolute;
-      right: -5px; /* Sağdan 15px boşluk */
-      top: 15px;   /* Üstten 15px boşluk */
-      transform: none; /* Ortalamayı kaldır */
+        position: absolute;
+        right: -5px;
+        top: 15px;
+        transform: none;
       }
       .logo {
-      position: absolute;
-      left: 10px; /* Sol kaydırma */
-      /* veya sağa kaydırmak için right: 10px; kullanabilirsiniz */
-      top: 50%;
-      transform: translateY(-50%);
-      height: 18px; /* Logonun yüksekliğini küçültme */
-      width: auto;  /* Yükseklik orantısına göre genişliği ayarlama */
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        height: 18px;
+        width: auto;
       }
     }
 
@@ -130,10 +130,6 @@
       max-height: 90%;
       border-radius: 10px;
       box-shadow: 0 0 20px rgba(0,0,0,0.4);
-    }
-
-    .modal:target {
-      display: flex;
     }
 
     footer {
@@ -239,6 +235,7 @@
       }
     }
 
+    /* Dark Mode */
     body.dark-mode {
       background-color: #121212;
     }
@@ -250,12 +247,13 @@
     body.dark-mode .card img {
       background-color: #333;
     }
-    body.dark-mode .card-body h3 {
-    color: white; /* Beyaz renk */
-    }
 
+    body.dark-mode .card-body h3 {
+      color: white;
+    }
   </style>
 </head>
+
 <body>
 
   <header>
@@ -288,14 +286,14 @@
     </div>
   </div>
 
-   <script>
-    // Google tag (gtag.js) kodu
+  <script>
+    // Google Analytics kodu
     (function() {
       const script = document.createElement('script');
       script.src = "https://www.googletagmanager.com/gtag/js?id=G-58E46LG3E2";
       script.async = true;
       document.head.appendChild(script);
-  
+
       script.onload = () => {
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
@@ -303,58 +301,58 @@
         gtag('config', 'G-58E46LG3E2');
       };
     })();
-  
+
     const container = document.getElementById("gallery");
     const modal = document.getElementById("image-modal");
     const modalImg = document.getElementById("modal-img");
     const themeToggle = document.getElementById("toggle-theme");
-  
-    for (let i = 0; i <= 73; i++) { /* 0'dan 73'e kadar fotoğraflar eklenecek */
-      const num = i.toString().padStart(4, '0'); // Sayıyı 4 haneli yapmak için sıfır ekler
-      const filename = `IMG-20250414-WA${num}.jpg`; // Dosya ismini oluştur
-  
+
+    for (let i = 0; i <= 73; i++) {
+      const num = i.toString().padStart(4, '0');
+      const filename = `IMG-20250414-WA${num}.jpg`;
+
       const card = document.createElement('div');
       card.classList.add('card');
-  
+
       const img = document.createElement('img');
-      img.src = `images/${filename}`;  // Fotoğrafı yükle
-      img.alt = `Ürün ${i + 1}`;  // Ürün numarasını 1'den başlatmak için
-  
-      // Fotoğrafı tıklayınca modal açılması için event listener ekleyin
+      img.src = `images/${filename}`;
+      img.alt = `Ürün ${i + 1}`;
+
       img.addEventListener('click', () => {
         modal.style.display = 'flex';
         modalImg.src = img.src;
-  
-        // Google Analytics: Fotoğraf tıklama olayı
+
+        // Google Analytics: Fotoğraf tıklama
         gtag('event', 'image_click', {
           'event_category': 'Product',
           'event_label': `Ürün ${i + 1}`,
         });
       });
-  
+
       const body = document.createElement('div');
       body.classList.add('card-body');
       const title = document.createElement('h3');
-      title.textContent = `Ürün ${i + 1}`; // Ürün numarasını 1'den başlatmak için
-  
+      title.textContent = `Ürün ${i + 1}`;
+
       body.appendChild(title);
       card.appendChild(img);
       card.appendChild(body);
       container.appendChild(card);
     }
-    </script>
-  
 
+    // ESC ile modal kapatma
     window.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         modal.style.display = 'none';
       }
     });
 
+    // Popup kapatma fonksiyonu
     function closePopup() {
       document.getElementById('popup').style.display = 'none';
     }
 
+    // Tema değiştirme
     themeToggle.addEventListener('click', () => {
       document.body.classList.toggle('dark-mode');
       themeToggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
