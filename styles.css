@@ -11,55 +11,53 @@ header {
   color: white;
   padding: 20px;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  position: relative;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
-.logo {
-  position: absolute;
-  left: 20px;
-  top: 50%;
-  transform: translateY(-50%);
+header .header-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+
+header .logo {
   height: 40px;
   width: auto;
-}
-
-.theme-toggle {
-  position: absolute;
-  right: 20px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  font-size: 24px;
-  color: white;
-  cursor: pointer;
-}
-
-@media (max-width: 768px) {
-  .theme-toggle {
-    position: absolute;
-    right: -5px;
-    top: 15px;
-    transform: none;
-  }
-
-  .logo {
-    position: absolute;
-    left: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    height: 18px;
-    width: auto;
-  }
 }
 
 header h1 {
   margin: 0;
   font-size: 1.8rem;
   text-align: center;
+}
+
+.header-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.toggle-button, .theme-toggle {
+  padding: 8px 14px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  background-color: #1abc9c;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.theme-toggle {
+  background-color: #34495e;
+}
+
+.toggle-button:hover, .theme-toggle:hover {
+  background-color: #16a085;
+  transform: scale(1.05);
 }
 
 .container {
@@ -239,4 +237,19 @@ body.dark-mode .card img {
 
 body.dark-mode .card-body h3 {
   color: white;
+}
+
+/* Gizli iletişim bölümü */
+#contact {
+  transition: all 0.5s ease;
+  opacity: 1;
+  height: auto;
+  overflow: hidden;
+}
+
+#contact.hidden {
+  opacity: 0;
+  height: 0;
+  padding: 0;
+  margin: 0;
 }
